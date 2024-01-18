@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NarrativeCraft</title>
+    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <link rel="stylesheet" href={% static 'css/home.css' %}>
+</head>
+<body>
+    <header>
+        <h1>{{ storyOnHeader.name }}</h1>
+        <p id="storyText">
+            {{ storyOnHeader.story|truncatechars:2010 }}
+            {% if storyOnHeader.story|length > 2010 %}
+                <a href="/story/{{ storyOnHeader.name }}"><button class="readMoreBtn">Read more</button></a>
+            {% endif %}
+        </p>
+
+        {% if user.is_authenticated %}
+            <a href="/profile">
+                <button class="account_btn">
+                    <img class="user_img" src="
+                        {% if user.image %}
+                        	{{ user.image }}
+                        {% else %}
+                            {% static 'images/user.png' %}
+                        {% endif %}" alt="{{ user.username }}">
+                    {{ user.username }}
+                </button>
+            </a>
+        {% else %}
+            <a href="/login">
+                <button class="account_btn">
+                    <img class="user_img" src="{% static 'images/user.png' %}" alt="login">
+                    Login or Create account
+                </button>
+            </a>
+        {% endif %}
+
+    </header>
+
+    <main>
+        <div class="stories">
+            {% for story in stories %}
+                <div class="story">
+                    <h1>{{ story.name }}</h1>
+                    <p>
+                        {{ story.story|truncatechars:350 }}
+                        <a href="/story/{{ story.name }}">
+                            <button class="readMoreBtn">Read more</button>
+                        </a>
+                    </p>
+                </div>
+
+            {% endfor %}
+        </div>
+    </main>
+
+    {% include "html/includes/footer.html" %}
+
+    <script src="{% static 'js/home.js' %}"></script>
+    <style>
+        header{
+            background-image: url({% static "images/headerFon.jpg" %});
+        }
+    </style>
+</body>
+</html>
+

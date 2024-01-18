@@ -1,0 +1,28 @@
+form{
+    padding: 3em;
+    width: 60%;
+    height: 50vh;
+    background: rgba(0,0,0,0.7);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+input{
+    text-align: center;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    font-size: 2em;
+    outline: none;
+    color: white;
+    background: transparent;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

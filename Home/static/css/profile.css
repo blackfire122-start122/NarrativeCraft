@@ -1,0 +1,186 @@
+main {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input{
+    width: -webkit-fill-available;
+    text-align: center;
+    padding: 5px;
+    margin: 1%;
+    font-size: 1.1em;
+    outline: none;
+    border-radius: 15px;
+    border: 2px solid black;
+    background: transparent;
+}
+
+.user_img{
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+    object-fit: cover;
+}
+
+.storiesAndCreateBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.storiesAndCreateBtn a{
+    margin-top: 1%;
+    text-align: center;
+    width: 100%;
+}
+
+.createStoryBtn{
+    width: 100%;
+    font-size: 1em;
+}
+
+.stories{
+    width: 100%;
+    max-height: 20em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1ch;
+}
+
+.story{
+    padding: 1em;
+    border: solid 2px black;
+    border-radius: 15px;
+    width: 12em;
+    font-size: 1.1em;
+}
+
+button{
+    font-size: 0.7em;
+}
+
+#id_image, #image-clear_id{
+    display: none;
+}
+
+#label_id_image .tooltiptext{
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    margin-top: 8em;
+    margin-left: -11em;
+    z-index: 1;
+    width: 20%;
+}
+
+#label_id_image:hover .tooltiptext {
+  visibility: visible;
+}
+
+.fullImageContainer{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90vh;
+}
+
+#fullImage{
+    width: 100%;
+    object-fit: cover;
+}
+
+#closeImage{
+    position: absolute;
+    right: 5%;
+    top: 15%;
+    z-index: 2;
+    width: 2em;
+    height: 2em;
+    padding: 5px;
+}
+
+#logout{
+    width: 4em;
+    margin: 1%;
+    align-self: flex-end
+}
+
+#logout button{
+    background: red;
+    font-size: 0.8em;
+}
+
+#logout button:active{
+    background: #fa4242;
+}
+
+.errors{
+    color: red;
+    font-size: 1.2em;
+}
+
+.changedInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.deleteStory{
+    background: red;
+    float: right;
+}
+
+.deletePopup{
+    width: 13em;
+    position: fixed;
+    background: rgba(255,255,255,0.6);
+    padding: 2em;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.deletePopup .deleteBtn{
+    background: red;
+}
+
+.deletePopup .deleteBtn:active{
+    background: #2a2a2a;
+}
+
+@media screen and (max-width: 767px){
+    .changedInfo{
+        flex-direction: column;
+    }
+
+    .stories{
+        grid-template-columns: repeat(1, 1fr);
+        max-height: 100%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+
+    form{
+        width: 80%;
+    }
+}

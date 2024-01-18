@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <link rel="stylesheet" href={% static 'css/profile.css' %}>
+</head>
+<body>
+    {% include 'html/includes/header.html' %}
+    <main>
+        <div class="fullImageContainer">
+            <img id="closeImage" onclick="closeFullImage()" src="{% static 'images/close.png' %}" alt="">
+            <img id="fullImage" src="" alt="">
+        </div>
+        <div class="deletePopup">
+            <h1>Really delete ?</h1>
+            <button class="deleteBtn" onclick="deleteStory()">Delete</button>
+            <button id="cancelBtn" onclick="cancelDeleteStory()">Cancel</button>
+        </div>
+        <div class="changedInfo">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="checkbox" name="image-clear" id="image-clear_id">
+                <input onchange="changeIdImage(this)" type="file" name="image" accept="image/*" id="id_image">
+                <label id="label_id_image" for="id_image">
+                    <img class="user_img" src="
+                        {% if user.image %}
+                            {{ user.image }}
+                        {% else %}
+                            {% static 'images/user.png' %}
+                        {% endif %}" alt="{{ user.username }}">
+                    <span class="tooltiptext">Change the image. Long press to open image</span>
+                </label>
+                {{ form.username }}
+                {{ form.first_name }}
+                {{ form.last_name }}
+                {{ form.email }}
+                <input type="submit">
+                <span class="errors">{{ form.error }}</span>
+            </form>
+            <div class="storiesAndCreateBtn">
+                <div class="stories">
+                    {% for story in userStories %}
+                        <div class="story" id="story_{{ story.id }}">
+                            <h1>{{ story.name }}</h1>
+                            <p>
+                                {{ story.story|truncatechars:50 }}
+                                <a href="/changeStory/{{ story.name }}">
+                                    <button>Change</button>
+                                </a>
+                                <button class="deleteStory" onclick="showDeleteStoryPopup({{ story.id }})">Delete</button>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a href="/createStory">
+                    <button class="createStoryBtn">Create Story</button>
+                </a>
+            </div>
+        </div>
+
+        <a id="logout" href="/logout"><button>Logout</button></a>
+    </main>
+
+    {% include "html/includes/footer.html" %}
+
+    <script src="{% static 'js/profile.js' %}"></script>
+    <style>
+        body{
+            background-image: url({% static "images/headerFon.jpg" %});
+        }
+    </style>
+</body>
+</html>

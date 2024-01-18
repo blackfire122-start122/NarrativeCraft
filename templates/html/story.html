@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ story.name }}</title>
+    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <link rel="stylesheet" href={% static 'css/story.css' %}>
+</head>
+<body>
+    {% include 'html/includes/header.html' %}
+
+    <main>
+        <h1>{{ story.name }}</h1>
+        <script>
+            let imagesData = [
+                {% for storyImage in storyImages %}
+                    {
+                        "url":"{{ storyImage.image.url }}",
+                        "afterChar":"{{ storyImage.afterChar }}",
+                        "width":"{{ storyImage.width }}",
+                        "underText":"{{ storyImage.underText }}",
+                        "side":"{{ storyImage.side }}",
+                    },
+
+
+                {% endfor %}
+            ]
+            let story = `{{ story.story }}`
+            let main = document.getElementsByTagName('main')[0]
+
+            let endStory = 0
+
+            for (let i = 0; i < imagesData.length; i++) {
+                let p = document.createElement("p")
+                p.textContent = story.slice(endStory, parseInt(imagesData[i]["afterChar"]))
+                endStory = parseInt(imagesData[i]["afterChar"])
+
+                main.append(p)
+
+                let img = document.createElement("img")
+                img.src = imagesData[i]["url"]
+                img.style.width = imagesData[i]["width"]
+                img.className = "imagesStory"
+
+
+                if (imagesData[i]["side"].toLowerCase()==="none" || imagesData[i]["side"]===""){
+                    let div = document.createElement("div")
+                    div.className = "containerImg"
+                    div.append(img)
+                    main.append(div)
+                }else {
+                    img.style.float = imagesData[i]["side"]
+                    main.append(img)
+                }
+
+                if (imagesData[i]["underText"]==="True") {
+                    let div = document.createElement("div")
+                    div.className = "containerImgUnder"
+                    div.append(img)
+                    main.append(div)
+                } else {
+                    img.style.position = "relative"
+                    img.style.zIndex = "2"
+                }
+
+            }
+            let p = document.createElement("p")
+            p.textContent = story.slice(endStory)
+            main.append(p)
+
+        </script>
+
+    </main>
+
+    {% include "html/includes/footer.html" %}
+
+    {% if story.backgroundImage %}
+        <style>
+            body {
+                background-image: url("{{ story.backgroundImage.url }}");
+            }
+        </style>
+    {% endif %}
+
+</body>
+</html>

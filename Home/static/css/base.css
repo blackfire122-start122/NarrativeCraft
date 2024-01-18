@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 15px;
+    background-color: #2f2e2e;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+footer{
+    padding: 2em;
+    background: black;
+    color: white;
+}
+
+footer .descriptionProject{
+    margin: 1%;
+    text-align: center;
+}
+
+footer a{
+    text-decoration: none;
+    color: white;
+    margin: 1%;
+}
+
+footer .links{
+    justify-content: space-between;
+    display: flex;
+}
+
+footer .links img{
+    width: 2.5em;
+}
+
+footer .info{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer .info p{
+    margin: 1%;
+}
+
+button{
+    border: solid 2px black;
+    padding: 0.9em;
+    background: black;
+    border-radius: 15px;
+    color: white;
+    font-size: 0.5em;
+}
+
+button:active{
+    background: #2a2a2a;
+}

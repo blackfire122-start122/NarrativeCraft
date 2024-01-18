@@ -1,0 +1,30 @@
+#menu_img{
+    height: 2em;
+}
+
+header{
+    position: fixed;
+    margin-left: 10%;
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+#linksHeader{
+    margin-left: 5%;
+    display: none;
+}
+
+.linkHeader{
+    margin: 3%;
+}
+
+.linkHeader button{
+    border: solid 2px black;
+    padding: 0.9em;
+    background: black;
+    border-radius: 15px;
+    color: white;
+    font-size: 0.7em;
+}

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <link rel="stylesheet" href={% static 'css/story.css' %}>
+    <link rel="stylesheet" href={% static 'css/changeStory.css' %}>
+</head>
+<body>
+    {% include 'html/includes/header.html' %}
+    <main>
+        <div class="tools">
+            <button onclick="AddImage()">Add image</button>
+            <button onclick="BackgroundImage()">Background Image</button>
+            <button onclick="Save()">Save</button>
+            <a target=”_blank” href="/story/{{ story.name }}"><button>Look on site</button></a>
+        </div>
+        <div class="form">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Name Story" maxlength="100" required="" id="input_name" value="{{ story.name }}">
+        </div>
+
+        <div id="popupSelectImage">
+            <img id="closeImage" onclick="hiddenPopupSelectImage()" src="{% static 'images/close.png' %}" alt="">
+            <input onchange="imageSelected(this)" type="file">
+            <img id="selectedImg" src="" alt="">
+            <button onclick="applySelectedImage()">Apply</button>
+        </div>
+
+    </main>
+
+    {% include "html/includes/footer.html" %}
+
+    <script>
+        let storyId = "{{ story.id }}"
+        let imagesData = [
+            {% for storyImage in storyImages %}
+                {
+                    "storyImageId":"{{ storyImage.id }}",
+                    "url":"{{ storyImage.image.url }}",
+                    "afterChar":"{{ storyImage.afterChar }}",
+                    "width":"{{ storyImage.width }}",
+                    "underText":"{{ storyImage.underText }}",
+                    "side":"{{ storyImage.side }}",
+                },
+
+
+            {% endfor %}
+        ]
+        let story = `{{ story.story }}`
+        let floatArrowUrl = `{% static 'images/floatArrow.png' %}`
+    </script>
+
+    <script src="{% static 'js/changeStory.js' %}"></script>
+    {% if story.backgroundImage %}
+        <style>
+            body{
+                background-image: url({{ story.backgroundImage.url }});
+            }
+        </style>
+    {% endif %}
+</body>
+</html>

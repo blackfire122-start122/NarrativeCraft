@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'css/header.css' %}>
+<header>
+    <img onclick="linksHeaderClick()" id="menu_img" src="{% static 'images/menu.png' %}" alt="">
+    <div id="linksHeader">
+        <a class="linkHeader" href="/"><button>Home</button></a>
+        <a class="linkHeader" href="/profile"><button>Profile</button></a>
+    </div>
+</header>
+
+<script>
+    linksHeader = document.getElementById("linksHeader")
+    function linksHeaderClick(){
+        linksHeader.style.display = linksHeader.style.display === "none" || linksHeader.style.display === "" ? "flex" : "none"
+    }
+</script>

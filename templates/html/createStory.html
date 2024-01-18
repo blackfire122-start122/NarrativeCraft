@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <link rel="stylesheet" href={% static 'css/createStory.css' %}>
+</head>
+<body>
+    {% include 'html/includes/header.html' %}
+    <main>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.name }}
+            <div>
+                <input type="submit">
+                <span>{{ form.errors }}</span>
+            </div>
+        </form>
+    </main>
+
+    {% include "html/includes/footer.html" %}
+    <style>
+        body{
+            background-image: url({% static "images/headerFon.jpg" %});
+        }
+    </style>
+</body>
+</html>

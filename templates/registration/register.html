@@ -1,0 +1,20 @@
+{% extends 'registration/baseAuth.html' %}
+{% block title %}
+	Register in NarrativeCraft
+{% endblock %}
+
+{% block main %}
+    <form method="post">
+        <h2>Register</h2>
+        {% csrf_token %}
+        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" placeholder="Username">
+        <input type="password" name="password1"  required="" id="id_password1" placeholder="Password">
+        <input type="password" name="password2"  required="" id="id_password2" placeholder="Confirm password">
+        <span class="errors">{{ form.errors }}</span>
+        <div class="logReg">
+            <button type="submit">Register</button>
+            <a href="/login">Ready are account ?</a>
+        </div>
+    </form>
+{% endblock %}
+
