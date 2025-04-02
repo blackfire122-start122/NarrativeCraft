@@ -19,7 +19,7 @@
         </p>
 
         {% if user.is_authenticated %}
-            <a href="/profile">
+            <a href="/profile" class="account_link">
                 <button class="account_btn">
                     <img class="user_img" src="
                         {% if user.image %}
@@ -31,7 +31,7 @@
                 </button>
             </a>
         {% else %}
-            <a href="/login">
+            <a href="/login" class="account_link">
                 <button class="account_btn">
                     <img class="user_img" src="{% static 'images/user.png' %}" alt="login">
                     Login or Create account
